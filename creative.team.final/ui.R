@@ -8,26 +8,66 @@
 #
 
 library(shiny)
+library(plotly)
+library(dplyr)
 
-# Define UI for application that draws a histogram
-shinyUI(fluidPage(
-  
-  # Application title
-  titlePanel("Old Faithful Geyser Data"),
-  
-  # Sidebar with a slider input for number of bins 
-  sidebarLayout(
-    sidebarPanel(
-       sliderInput("bins",
-                   "Number of bins:",
-                   min = 1,
-                   max = 50,
-                   value = 30)
-    ),
-    
-    # Show a plot of the generated distribution
-    mainPanel(
-       plotOutput("distPlot")
-    )
-  )
+crimes <- df %>%
+            group_by(Event.Clearance.SubGroup) %>%
+            select(Event.Clearance.SubGroup) %>%
+            distinct()
+
+shinyUI(navbarPage('SPD 911 Incident Response Data',
+                   # Create a tab panel for you map
+                   tabPanel('Map',
+                            # Create sidebar layout
+                            sidebarLayout(
+                              # Side panel for controls
+                              sidebarPanel(
+                                # Input to select variable to map
+                                checkboxGroupInput('crimechoices', 
+                                            label = 'Variable to Map', 
+                                            choices = crimes$Event.Clearance.SubGroup
+                                ), 
+                                
+                                dateRangeInput('daterange', 
+                                               label = 'Range of Dates to Map', 
+                                               start = '2012-01-01', 
+                                               end = '2012-12-31', 
+                                               min = '2012-01-01', 
+                                               max = '2012-12-31'
+                                )
+                              ),
+                              # Main panel: display plotly map
+                              mainPanel(
+                                plotlyOutput('map')
+                              )
+                            )
+                   ),
+                   
+                   tabPanel('Heat Map', 
+                            # Create sidebar layout
+                            sidebarLayout(
+                              # Side panel for controls
+                              sidebarPanel(
+                                # Input to select variable to map
+                                checkboxGroupInput('heatcrimechoices', 
+                                                   label = 'Variable to Map', 
+                                                   choices = crimes$Event.Clearance.SubGroup
+                                ), 
+                                
+                                dateRangeInput('heatdaterange', 
+                                               label = 'Range of Dates to Map', 
+                                               start = '2012-01-01', 
+                                               end = '2012-12-31', 
+                                               min = '2012-01-01', 
+                                               max = '2012-12-31'
+                                )
+                              ), 
+                              
+                              # Main panel: display plotly map
+                              mainPanel(
+                                plotlyOutput('heatmap')
+                              )
+                            )
+                   )
 ))
