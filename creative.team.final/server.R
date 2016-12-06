@@ -6,8 +6,11 @@
 # 
 #    http://shiny.rstudio.com/
 #
-
+setwd('~/Desktop/INFO201/creative-team-final/project_data')
+df <- read.csv('Seattle_Police_Department_911_Incident_Response_2012.csv')
 library(shiny)
+library(leaflet)
+library(dplyr)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
@@ -20,7 +23,14 @@ shinyServer(function(input, output) {
     
     # draw the histogram with the specified number of bins
     hist(x, breaks = bins, col = 'darkgray', border = 'white')
-    
   })
-  
-})
+  # Creates the normal crime map from leaflet 
+  output$map <- renderLeaflet({
+    leaflet(df) %>%
+      addTiles(
+      ) %>%
+      setView(lng = -122.3321, lat = 47.6062, zoom = 11) %>% 
+      addMarkers(~Longitude, ~Latitude, popup = ~as.character(Event.Clearance.Description), 
+                 clusterOptions = markerClusterOptions())
+  })
+}) 
