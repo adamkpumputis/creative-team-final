@@ -6,7 +6,7 @@
 # 
 #    http://shiny.rstudio.com/
 #
-setwd('~/Desktop/INFO201/creative-team-final/project_data')
+setwd('~/Desktop/creative-team-final/project_data')
 df <- read.csv('Seattle_Police_Department_911_Incident_Response_2012.csv')
 
 library(shiny)
@@ -68,7 +68,7 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                               
                               # Main panel: display plotly map
                               mainPanel(
-                                plotlyOutput('heatmap')
+                                leafletOutput('heatmap')
                               )
                             )
                    )
