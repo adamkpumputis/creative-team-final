@@ -6,7 +6,8 @@
 # 
 #    http://shiny.rstudio.com/
 #
-setwd('~/Desktop/creative-team-final/project_data')
+
+setwd('C:/Users/justinch/Desktop/creative-team-final/project_data')
 df <- read.csv('Seattle_Police_Department_911_Incident_Response_2012.csv')
 
 library(shiny)
@@ -69,6 +70,40 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                               # Main panel: display plotly map
                               mainPanel(
                                 leafletOutput('heatmap')
+                              )
+                            )
+                   ),
+                   
+                   tabPanel('About',
+                            # Creates a sidebar layout
+                            sidebarLayout(
+                              # Creates a sidebar panel. Used to give a overview of project
+                              sidebarPanel(
+                                h1("About this project"),
+                                
+                                p("This project was a collaboration to analyze Seattle's
+                                  911 calls during the year of 2012. Using data from the
+                                  Seattle Police Department, we were able to map and infer
+                                  the locations and crimes that occured the most in Seattle.
+                                  Enjoy!")
+                              ),
+                              
+                              # Creates a main panel. Contains a variety of graphs on the dataset
+                              mainPanel(
+                                h3("Observations"),
+                                
+                                p("If you're pressed for time, here are a couple high level 
+                                  observations about the dataset we're looking at!")
+                                
+                                # High level overview in text here.
+                                
+                                # Going to graph 911 calls by offence/topic for 2012 seperated by year.
+                                
+                                # Adding image of zone map from SPD or link. Image may be too big
+                                
+                                # Giving graph of count of 911 calls based by zone
+                                
+                                # Fast and furious is the game
                               )
                             )
                    )
