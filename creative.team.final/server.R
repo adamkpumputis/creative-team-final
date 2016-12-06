@@ -6,7 +6,7 @@
 # 
 #    http://shiny.rstudio.com/
 #
-setwd('~/Desktop/INFO201/creative-team-final/project_data')
+setwd('~/Desktop/creative-team-final/project_data')
 df <- read.csv('Seattle_Police_Department_911_Incident_Response_2012.csv')
 library(shiny)
 library(leaflet)
@@ -32,5 +32,13 @@ shinyServer(function(input, output) {
       setView(lng = -122.3321, lat = 47.6062, zoom = 11) %>% 
       addMarkers(~Longitude, ~Latitude, popup = ~as.character(Event.Clearance.Description), 
                  clusterOptions = markerClusterOptions())
+  })
+  #creates the heatmap from leaflet
+  output$heatmap <- renderLeaflet({
+    leaflet() %>% 
+    setView(lng = -122.335167, 
+              lat = 47.608013, 
+              zoom = 11) %>%
+    addTiles()
   })
 }) 
