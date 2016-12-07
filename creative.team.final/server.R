@@ -14,16 +14,14 @@ library(dplyr)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-   
+
   # Creates the normal crime map from leaflet 
   output$map <- renderLeaflet({
     leaflet(df) %>%
-      addTiles(
-      ) %>%
-      setView(lng = -122.3321, lat = 47.6062, zoom = 11) %>% 
-      addMarkers(~Longitude, ~Latitude, popup = ~as.character(Event.Clearance.Description), 
-                 clusterOptions = markerClusterOptions())
+      addTiles() %>%
+      setView(lng = -122.3321, lat = 47.6062, zoom = 11) 
   })
+  
   #creates the heatmap from leaflet
   output$heatmap <- renderLeaflet({
     leaflet() %>% 
@@ -32,4 +30,24 @@ shinyServer(function(input, output) {
               zoom = 11) %>%
     addTiles()
   })
+
+  #Allow checkbox's input to search through data frame to find matches
+   crimefilter <- reactive({
+    df[df$Event.Clearance.Group %in% input$crimechoices,]
+   })
+   
+   # Plots the data points selected in checkboxs
+   observe({
+     if(nrow(crimefilter())==0) {
+       leafletProxy("map") %>% clearMarkerClusters()
+     }
+     else{
+       leafletProxy("map", data=crimefilter()) %>%
+         clearMarkerClusters() %>%
+         addMarkers(lng= ~Longitude, lat= ~Latitude, popup = ~paste0(
+           'Event Description: ',as.character(Event.Clearance.Description)),
+                          clusterOptions=markerClusterOptions())
+     }
+     })
 }) 
+

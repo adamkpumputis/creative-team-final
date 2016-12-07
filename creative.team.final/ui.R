@@ -13,6 +13,7 @@ df <- read.csv('Seattle_Police_Department_911_Incident_Response_2012.csv')
 library(shiny)
 library(leaflet)
 library(dplyr)
+library(leaflet)
 
 crimes <- list("Assaults" = 'ASSAULTS', 
                "Auto Thefts" = 'AUTO THEFTS', 
@@ -44,9 +45,15 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                               # Side panel for controls
                               sidebarPanel(
                                 # Input to select variable to map
+
                                 checkboxGroupInput('crimechoices', 
                                             label = 'Variable to Map', 
                                             choices = crimes
+                                ),            
+                                            
+                                checkboxGroupInput(inputId='crimechoices', 
+                                                   label = 'Variable to Map', 
+                                                   choices = crimes
                                 ), 
                                 
                                 dateRangeInput('daterange', 
