@@ -13,7 +13,6 @@ df <- read.csv('Seattle_Police_Department_911_Incident_Response_2012.csv')
 library(shiny)
 library(leaflet)
 library(dplyr)
-library(leaflet)
 
 crimes <- list("Assaults" = 'ASSAULTS', 
                "Auto Thefts" = 'AUTO THEFTS', 
@@ -22,7 +21,7 @@ crimes <- list("Assaults" = 'ASSAULTS',
                "Car Prowl" = 'CAR PROWL', 
                "Disturbances" = 'DISTURBANCES',
                "Drive By (No Injury)" = 'DRIVE BY (NO INJURY)', 
-               "Failure to Register (Sex Offender)" = 'FAILURE TO REGISTER(SEX OFFENDER)', 
+               "Failure to Register (Sex Offender)" = 'FAILURE TO REGISTER (SEX OFFENDER)', 
                "Homicide" = 'HOMICIDE', 
                "Lewd Conduct" = 'LEWD CONDUCT', 
                "Narcotics Complaints" = 'NARCOTICS COMPLAINTS', 
@@ -34,7 +33,7 @@ crimes <- list("Assaults" = 'ASSAULTS',
                "Robbery" = 'ROBBERY', 
                "Shoplifting" = 'SHOPLIFTING', 
                "Trespass" = 'TRESPASS', 
-               "Weapons Calls" = 'GUN CALLS'
+               "Weapons Calls" = 'WEAPONS CALLS'
 )
 
 shinyUI(navbarPage('SPD 911 Incident Response Data',
@@ -49,11 +48,6 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                                 checkboxGroupInput('crimechoices', 
                                             label = 'Variable to Map', 
                                             choices = crimes
-                                ),            
-                                            
-                                checkboxGroupInput(inputId='crimechoices', 
-                                                   label = 'Variable to Map', 
-                                                   choices = crimes
                                 ), 
                                 
                                 dateRangeInput('daterange', 
