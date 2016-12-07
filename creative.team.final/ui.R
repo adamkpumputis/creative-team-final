@@ -7,17 +7,34 @@
 #    http://shiny.rstudio.com/
 #
 
-setwd('C:/Users/justinch/Desktop/creative-team-final/project_data')
+setwd('C:/Users/Benjamin/Documents/Info201/creative-team-final/project_data')
 df <- read.csv('Seattle_Police_Department_911_Incident_Response_2012.csv')
 
 library(shiny)
-library(plotly)
+library(leaflet)
 library(dplyr)
 
-crimes <- df %>%
-            group_by(Event.Clearance.SubGroup) %>%
-            select(Event.Clearance.SubGroup) %>%
-            distinct()
+crimes <- list("Assaults" = 'ASSAULTS', 
+               "Auto Thefts" = 'AUTO THEFTS', 
+               "Bike" = 'BIKE', 
+               "Burglary" = 'BURGLARY', 
+               "Car Prowl" = 'CAR PROWL', 
+               "Disturbances" = 'DISTURBANCES',
+               "Drive By (No Injury)" = 'DRIVE BY (NO INJURY)', 
+               "Failure to Register (Sex Offender)" = 'FAILURE TO REGISTER(SEX OFFENDER)', 
+               "Homicide" = 'HOMICIDE', 
+               "Lewd Conduct" = 'LEWD CONDUCT', 
+               "Narcotics Complaints" = 'NARCOTICS COMPLAINTS', 
+               "Nuisance, Mischief" = 'NUISANCE, MISCHIEF', 
+               "Persons - Lost, Found, Missing" = 'PERSONS - LOST, FOUND, MISSING', 
+               "Property Damage" = 'PROPERTY DAMAGE', 
+               "Prostitution" = 'PROSTITUTION', 
+               "Reckless Burning" = 'RECKLESS BURNING', 
+               "Robbery" = 'ROBBERY', 
+               "Shoplifting" = 'SHOPLIFTING', 
+               "Trespass" = 'TRESPASS', 
+               "Weapons Calls" = 'GUN CALLS'
+)
 
 shinyUI(navbarPage('SPD 911 Incident Response Data',
                    # Create a tab panel for you map
@@ -29,7 +46,7 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                                 # Input to select variable to map
                                 checkboxGroupInput('crimechoices', 
                                             label = 'Variable to Map', 
-                                            choices = crimes$Event.Clearance.SubGroup
+                                            choices = crimes
                                 ), 
                                 
                                 dateRangeInput('daterange', 
@@ -55,7 +72,7 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                                 # Input to select variable to map
                                 checkboxGroupInput('heatcrimechoices', 
                                                    label = 'Variable to Map', 
-                                                   choices = crimes$Event.Clearance.SubGroup
+                                                   choices = crimes
                                 ), 
                                 
                                 dateRangeInput('heatdaterange', 

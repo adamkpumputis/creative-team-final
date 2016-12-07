@@ -6,8 +6,7 @@
 # 
 #    http://shiny.rstudio.com/
 #
-getwd()
-setwd('C:/Users/justinch/Desktop/creative-team-final/project_data')
+#setwd('C:/Users/Benjamin/Documents/Info201/creative-team-final/project_data')
 df <- read.csv('Seattle_Police_Department_911_Incident_Response_2012.csv')
 library(shiny)
 library(leaflet)
