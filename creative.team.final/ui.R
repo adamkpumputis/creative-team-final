@@ -51,25 +51,6 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                             )
                    ),
                    
-                   tabPanel('Heat Map', 
-                            # Create sidebar layout
-                            sidebarLayout(
-                              # Side panel for controls
-                              sidebarPanel(
-                                # Input to select variable to map
-                                checkboxGroupInput('heatcrimechoices', 
-                                                   label = 'Variable to Map', 
-                                                   choices = crimes
-                                )
-                              ), 
-                              
-                              # Main panel: display plotly map
-                              mainPanel(
-                                leafletOutput('heatmap')
-                              )
-                            )
-                   ),
-                   
                    tabPanel('About',
                             # Creates a sidebar layout
                             sidebarLayout(
