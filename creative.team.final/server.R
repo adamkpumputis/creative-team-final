@@ -40,6 +40,9 @@ shinyServer(function(input, output) {
    
    # Plots the data points selected in checkboxs
    observe({
+     
+     #dataForPlot <- inner_join(crimefilter(),daterange(),by="X")
+     
      if(nrow(crimefilter())==0) {
        leafletProxy("map") %>% clearMarkerClusters()
      }
@@ -47,8 +50,11 @@ shinyServer(function(input, output) {
        leafletProxy("map", data=crimefilter()) %>%
          clearMarkerClusters() %>%
          addMarkers(lng= ~Longitude, lat= ~Latitude, popup = ~paste0(
-           'Event Description: ',as.character(Event.Clearance.Description)),
-                          clusterOptions=markerClusterOptions())
+           'Event Description: ',as.character(Event.Clearance.Description), "<br>",
+           'Date of Incident: ', as.character(Event.Clearance.Date), "<br>",
+           'Subgroup of Incident ', as.character(Event.Clearance.Description) 
+         )
+         ,clusterOptions=markerClusterOptions())
      }
      })
    
