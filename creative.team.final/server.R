@@ -9,6 +9,7 @@
 library(shiny)
 library(leaflet)
 library(dplyr)
+library(plotly)
 
 setwd('C:/Users/Justin/Documents/info201/creative-team-final')
 df <- read.csv('project_data/Seattle_Police_Department_911_Incident_Response_2012.csv')
@@ -40,7 +41,6 @@ shinyServer(function(input, output) {
    
    # Plots the data points selected in checkboxs
    observe({
-     
      #dataForPlot <- inner_join(crimefilter(),daterange(),by="X")
      
      if(nrow(crimefilter())==0) {
@@ -51,8 +51,7 @@ shinyServer(function(input, output) {
          clearMarkerClusters() %>%
          addMarkers(lng= ~Longitude, lat= ~Latitude, popup = ~paste0(
            'Event Description: ',as.character(Event.Clearance.Description), "<br>",
-           'Date of Incident: ', as.character(Event.Clearance.Date), "<br>",
-           'Subgroup of Incident ', as.character(Event.Clearance.Description) 
+           'Date of Incident: ', as.character(Event.Clearance.Date), "<br>"
          )
          ,clusterOptions=markerClusterOptions())
      }
