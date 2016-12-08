@@ -1,27 +1,13 @@
-# creative-team-final
-Final project for Creative Team
+# SPD 911 Incident Response
+For our final project we created an interactive application to display information about the [Seattle Police Department's 911 Incident Response](https://data.seattle.gov/Public-Safety/Seattle-Police-Department-911-Incident-Response/3k2p-39jp) dataset.
 
-##Project Description
+## About the Project
 
-What is the dataset you'll be working with?  Please include background on who collected the data, where you accessed it, and any additional information we should know about how this data came to be.
+This project uses R and Shiny to process and display information from the dataset. It includes an interactive map of Seattle with a widget to let the user filter for crime type and an about page that features high level observations about the dataset, as well as a histogram counting the number of times each crime appeared.
 
-Who is your target audience?  Depending on the domain of your data, there may be a variety of audiences interested in using the dataset.  You should hone in on one of these audiences.
+When making this project, the target audience we had in mind were people that wanted to move to Seattle. Theoretically, they would be able to use our application to learn more about crime across Seattle and then decide the best location for themselves. This audience includes out-of-state students, business owners, as well as anybody else interested in learning about crime in Seattle.
 
-What does your audience want to learn from your data?  Please list out at least 3 specific questions that your project will answer for your audience.
-
-##Technical Descrption
-
-What will be the format of your final product (Shiny app, HTML page or slideshow compiled with KnitR, etc.)?
-
-How will you be reading in your data (i.e., are you using an API, or is it a static .csv/.json file)?
-
-What types of data-wrangling (reshaping, reformatting, etc.) will you need to do to your data?
-
-What (major/new) libraries will be using in this project (no need to list common libraries that are used in many projects such as dplyr)
-
-What questions, if any, will you be answering with statistical analysis/machine learning?
-
-What major challenges do you anticipate? 
-
-##Setup
-Need to make at least 5 issues
+We also sought to answer the following questions in our project. If you're interested in learning the answer, feel free to check out our 'About' tab in the application!
+1.	What kinds of crimes occur in each region?
+2.	What is the most common crime overall?
+3.	Are certain types of crime (robbery, etc) more common in certain areas?

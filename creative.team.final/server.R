@@ -1,18 +1,11 @@
-#
-# This is the server logic of a Shiny web application. You can run the 
-# application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-# 
-#    http://shiny.rstudio.com/
-#
+setwd('C:/Users/Benjamin/Documents/Info201/creative-team-final')
+
 library(shiny)
 library(leaflet)
 library(dplyr)
 
-setwd('C:/Users/Justin/Documents/info201/creative-team-final')
-df <- read.csv('project_data/Seattle_Police_Department_911_Incident_Response_2012.csv')
-source('./scripts/createYearlyGraph.R')
+df <- read.csv('project_data/filtered.csv')
+source('scripts/createYearlyGraph.R')
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
@@ -24,7 +17,7 @@ shinyServer(function(input, output) {
       setView(lng = -122.3321, lat = 47.6062, zoom = 11) 
   })
   
-  #creates the heatmap from leaflet
+  # Creates the heatmap from leaflet
   output$heatmap <- renderLeaflet({
     leaflet() %>% 
     setView(lng = -122.335167, 
@@ -38,26 +31,28 @@ shinyServer(function(input, output) {
     df[df$Event.Clearance.Group %in% input$crimechoices,]
    })
    
-   # Plots the data points selected in checkboxs
+   # Plots the data points selected in checkboxes
    observe({
      
      #dataForPlot <- inner_join(crimefilter(),daterange(),by="X")
      
-     if(nrow(crimefilter())==0) {
+     # Replots the markers
+     if(nrow(crimefilter()) == 0) {
        leafletProxy("map") %>% clearMarkerClusters()
      }
      else{
-       leafletProxy("map", data=crimefilter()) %>%
+       leafletProxy("map", data = crimefilter()) %>%
          clearMarkerClusters() %>%
-         addMarkers(lng= ~Longitude, lat= ~Latitude, popup = ~paste0(
-           'Event Description: ',as.character(Event.Clearance.Description), "<br>",
-           'Date of Incident: ', as.character(Event.Clearance.Date), "<br>",
-           'Subgroup of Incident ', as.character(Event.Clearance.Description) 
-         )
-         ,clusterOptions=markerClusterOptions())
+         addMarkers(lng = ~Longitude, lat = ~Latitude, popup = ~paste0(
+           'Event Group: ', as.character(Event.Clearance.Group), "<br>", 
+           'Event Description: ', as.character(Event.Clearance.Description), "<br>",
+           'Date of Incident: ', as.character(Event.Clearance.Date)
+         ), 
+         clusterOptions = markerClusterOptions())
      }
      })
    
+   # Histogram for 'About' tab
    output$yearlyCrimeMap <- renderPlotly({
         makeYearGraph(df)
    })

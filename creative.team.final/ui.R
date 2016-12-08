@@ -1,19 +1,13 @@
-#
-# This is the user-interface definition of a Shiny web application. You can
-# run the application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-# 
-#    http://shiny.rstudio.com/
-#
-setwd('C:/Users/Justin/Documents/info201/creative-team-final')
-source('./scripts/createYearlyGraph.R')
-df <- read.csv('project_data/Seattle_Police_Department_911_Incident_Response_2012.csv')
+setwd('C:/Users/Benjamin/Documents/Info201/creative-team-final')
 
 library(shiny)
 library(leaflet)
 library(dplyr)
+library(plotly)
 
+df <- read.csv('./project_data/filtered.csv')
+
+# A list of crimes to include in the checkbox widget
 crimes <- list("Assaults" = 'ASSAULTS', 
                "Auto Thefts" = 'AUTO THEFTS', 
                "Bike" = 'BIKE', 
@@ -48,14 +42,6 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                                 checkboxGroupInput('crimechoices', 
                                             label = 'Variable to Map', 
                                             choices = crimes
-                                ), 
-                                
-                                dateRangeInput('daterange', 
-                                               label = 'Range of Dates to Map', 
-                                               start = '2012-01-01', 
-                                               end = '2012-12-31', 
-                                               min = '2012-01-01', 
-                                               max = '2012-12-31'
                                 )
                               ),
                               # Main panel: display plotly map
@@ -74,14 +60,6 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                                 checkboxGroupInput('heatcrimechoices', 
                                                    label = 'Variable to Map', 
                                                    choices = crimes
-                                ), 
-                                
-                                dateRangeInput('heatdaterange', 
-                                               label = 'Range of Dates to Map', 
-                                               start = '2012-01-01', 
-                                               end = '2012-12-31', 
-                                               min = '2012-01-01', 
-                                               max = '2012-12-31'
                                 )
                               ), 
                               
