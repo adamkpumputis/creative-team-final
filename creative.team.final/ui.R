@@ -86,7 +86,7 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                               
                               # Creates a main panel. Contains a variety of graphs on the dataset
                               mainPanel(
-                                h5("Observations"),
+                                h3("Observations"),
                                 
                                 p("If you're pressed for time, here are a couple high level 
                                   observations about the dataset we're looking at!"),
@@ -99,11 +99,20 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                                 plotlyOutput("yearlyCrimeMap", width = "80%", height = "300px"),
             
                                 p("Surprisingly, the top three most reported topics were Traffic-Related
-                                  Calls, Suspicious Circumstances, and Disturbances.")
+                                  Calls, Suspicious Circumstances, and Disturbances."),
                                 
-                                # Giving graph of count of 911 calls based by zone
+                                p("One thing that may not surprise you is that a majority of crime is centralized
+                                  downtown. You can observe this on the map. For all categories, downtown has a higher
+                                  number of incidents than its surrounding areas for the year 2012."),
                                 
-                                # Fast and furious is the game
+                                p("Interesting outliers of note"),
+                                
+                                tags$ul(
+                                  tags$li("Belltown has the most 911 calls for narcotic complaints for 2012"),
+                                  tags$li("Rainier valley had the most 911 calls for drive-by shootings."),
+                                  tags$li("Broadview has a large amount of prostitution cases along WA 99.")
+                                )
+                                
                               )
                             )
                    )
