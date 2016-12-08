@@ -6,9 +6,9 @@
 # 
 #    http://shiny.rstudio.com/
 #
-
-setwd('C:/Users/Benjamin/Documents/Info201/creative-team-final/project_data')
-df <- read.csv('Seattle_Police_Department_911_Incident_Response_2012.csv')
+setwd('C:/Users/Justin/Documents/info201/creative-team-final')
+source('./scripts/createYearlyGraph.R')
+df <- read.csv('project_data/Seattle_Police_Department_911_Incident_Response_2012.csv')
 
 library(shiny)
 library(leaflet)
@@ -108,16 +108,20 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                               
                               # Creates a main panel. Contains a variety of graphs on the dataset
                               mainPanel(
-                                h3("Observations"),
+                                h5("Observations"),
                                 
                                 p("If you're pressed for time, here are a couple high level 
-                                  observations about the dataset we're looking at!")
+                                  observations about the dataset we're looking at!"),
                                 
                                 # High level overview in text here.
+                                p("There was a total of 255,833 911 calls for 2012. If we graph these 
+                                  incidents by the type of crimes..."),
+                                # Going to graph 911 calls by offence/topic for 2012 seperated by crime.
                                 
-                                # Going to graph 911 calls by offence/topic for 2012 seperated by year.
-                                
-                                # Adding image of zone map from SPD or link. Image may be too big
+                                plotlyOutput("yearlyCrimeMap", width = "80%", height = "300px"),
+            
+                                p("Surprisingly, the top three most reported topics were Traffic-Related
+                                  Calls, Suspicious Circumstances, and Disturbances.")
                                 
                                 # Giving graph of count of 911 calls based by zone
                                 

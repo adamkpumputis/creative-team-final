@@ -6,11 +6,13 @@
 # 
 #    http://shiny.rstudio.com/
 #
-#setwd('C:/Users/Benjamin/Documents/Info201/creative-team-final/project_data')
-df <- read.csv('Seattle_Police_Department_911_Incident_Response_2012.csv')
 library(shiny)
 library(leaflet)
 library(dplyr)
+
+setwd('C:/Users/Justin/Documents/info201/creative-team-final')
+df <- read.csv('project_data/Seattle_Police_Department_911_Incident_Response_2012.csv')
+source('./scripts/createYearlyGraph.R')
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
@@ -49,5 +51,9 @@ shinyServer(function(input, output) {
                           clusterOptions=markerClusterOptions())
      }
      })
+   
+   output$yearlyCrimeMap <- renderPlotly({
+        makeYearGraph(df)
+   })
 }) 
 
