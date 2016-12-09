@@ -1,12 +1,12 @@
-setwd('C:/Users/Justin/Documents/info201/creative-team-final')
+# setwd('C:/Users/Justin/Documents/info201/creative-team-final')
 
 library(shiny)
 library(leaflet)
 library(dplyr)
 library(lubridate)
 
-df <- read.csv('project_data/filtered.csv')
-source('scripts/graphScripts.R')
+df <- read.csv('../project_data/filtered.csv')
+source('../scripts/graphScripts.R')
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
