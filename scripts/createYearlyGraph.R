@@ -1,10 +1,3 @@
-library(shiny)
-library(leaflet)
-library(dplyr)
-library(plotly)
-library(lubridate)
-setwd('C:/Users/Justin/Documents/info201/creative-team-final')
-df <- read.csv('project_data/filtered.csv')
 
 makeYearGraph <- function(df) {
   yearly_crime_df <- select(df, Event.Clearance.Group) %>%
