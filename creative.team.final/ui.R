@@ -79,22 +79,26 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                                   incidents by the type of crimes below."),
                                 # Going to graph 911 calls by offence/topic for 2012 seperated by crime.
                                 
+                                # Output of plot number 1
                                 plotlyOutput("yearlyCrimeMap", width = "80%", height = "300px"),
-            
-                                p("Surprisingly, the top three most reported topics were Traffic-Related
-                                  Calls, Suspicious Circumstances, and Disturbances."),
+                                  
+                                p("Surprisingly, the top three most reported topics were Disturbances,
+                                  Car Prowling, and Robbery."),
                                 
                                 p("One thing that may not surprise you is that a majority of crime is centralized
                                   downtown. You can observe this on the map. For all categories, downtown has a higher
                                   number of incidents than its surrounding areas for the year 2012 with a few exceptions."),
                                 
-                                p("Interesting outliers of note"),
+                                h4("Interesting outliers of note"),
                                 
                                 tags$ul(
                                   tags$li("Belltown has the most 911 calls for narcotic complaints for 2012"),
                                   tags$li("Rainier valley had the most 911 calls for drive-by shootings."),
                                   tags$li("Broadview has a large amount of prostitution cases along WA 99.")
                                 ),
+                                
+                                h4("Looking at a specific month"),
+                                
                                 p("Let's take a look at the number of calls made over the year seperated by months."),
                                 
                                 plotlyOutput("monthlyNumberGraph", width = "80%", height = "300px"),
@@ -106,11 +110,9 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                                 
                                 p("The vast majority of 911 calls in 2012 dealth mainly with disturbances. National holidays,
                                   such as the 4th of July, may be the cause of this uptick in 911 calls. Non-violent crimes
-                                  such as robbery and theft are reported than assault. One thing that could investigate more is
-                                  is the correlation between crimes with a social stigma (prostitution, assualt) and the times it
-                                  is reported via a 911 call.")
+                                  such as robbery and theft are reported than assault and other violent crimes"),
                                 
-                                
+                                h4("Future Research")
                               )
                             )
                    )

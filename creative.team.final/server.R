@@ -17,19 +17,10 @@ shinyServer(function(input, output) {
       addTiles() %>%
       setView(lng = -122.3321, lat = 47.6062, zoom = 11) 
   })
-  
-  # Creates the heatmap from leaflet
-  output$heatmap <- renderLeaflet({
-    leaflet() %>% 
-    setView(lng = -122.335167, 
-              lat = 47.608013, 
-              zoom = 11) %>%
-    addTiles()
-  })
 
   #Allow checkbox's input to search through data frame to find matches
    crimefilter <- reactive({
-    df[df$Event.Clearance.Group %in% input$crimechoices,]
+    df[df$Event.Clearance.Group %in% input$crimechoices,] 
    })
    
    # Plots the data points selected in checkboxes
