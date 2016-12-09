@@ -1,8 +1,9 @@
-setwd('C:/Users/Benjamin/Documents/Info201/creative-team-final')
+setwd('C:/Users/Justin/Documents/info201/creative-team-final')
 
 library(shiny)
 library(leaflet)
 library(dplyr)
+library(lubridate)
 
 df <- read.csv('project_data/filtered.csv')
 source('scripts/createYearlyGraph.R')
@@ -55,6 +56,10 @@ shinyServer(function(input, output) {
    # Histogram for 'About' tab
    output$yearlyCrimeMap <- renderPlotly({
         makeYearGraph(df)
+   })
+   
+   output$monthlyNumberGraph <- renderPlotly({
+        makeTimeGraph(df)
    })
 }) 
 

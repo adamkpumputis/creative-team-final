@@ -1,4 +1,4 @@
-setwd('C:/Users/Benjamin/Documents/Info201/creative-team-final')
+setwd('C:/Users/Justin/Documents/info201/creative-team-final')
 
 library(shiny)
 library(leaflet)
@@ -92,8 +92,9 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                                   tags$li("Belltown has the most 911 calls for narcotic complaints for 2012"),
                                   tags$li("Rainier valley had the most 911 calls for drive-by shootings."),
                                   tags$li("Broadview has a large amount of prostitution cases along WA 99.")
-                                )
+                                ),
                                 
+                                plotlyOutput("monthlyNumberGraph", width = "80%", height = "300px")
                               )
                             )
                    )
