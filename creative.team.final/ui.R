@@ -95,8 +95,21 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                                   tags$li("Rainier valley had the most 911 calls for drive-by shootings."),
                                   tags$li("Broadview has a large amount of prostitution cases along WA 99.")
                                 ),
+                                p("Let's take a look at the number of calls made over the year seperated by months."),
                                 
-                                plotlyOutput("monthlyNumberGraph", width = "80%", height = "300px")
+                                plotlyOutput("monthlyNumberGraph", width = "80%", height = "300px"),
+                                
+                                p("As you can see, 911 calls increased in the summer and decreased as winter set in. Let's 
+                                  see what sort of crimes was committed during the month of July."),
+                                
+                                plotlyOutput("julyGraph", width = "80%", height = "300px"),
+                                
+                                p("The vast majority of 911 calls in 2012 dealth mainly with disturbances. National holidays,
+                                  such as the 4th of July, may be the cause of this uptick in 911 calls. Non-violent crimes
+                                  such as robbery and theft are reported than assault. One thing that could investigate more is
+                                  is the correlation between crimes with a social stigma (prostitution, assualt) and the times it
+                                  is reported via a 911 call.")
+                                
                                 
                               )
                             )

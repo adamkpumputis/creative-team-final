@@ -58,8 +58,15 @@ shinyServer(function(input, output) {
         makeYearGraph(df)
    })
    
+   # Bar graph for 'About' tab
    output$monthlyNumberGraph <- renderPlotly({
         makeTimeGraph(df)
    })
+   
+   # Pie graph for 'About' tab
+   output$julyGraph <- renderPlotly({
+        make_july_graph(df)
+   })
+   
 }) 
 

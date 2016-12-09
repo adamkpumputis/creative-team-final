@@ -45,5 +45,20 @@ makeTimeGraph <- function(df) {
                     )
   return(time.graph)
 }
+make_july_graph <- function(df) {
+  july_df <- mutate(df, crime.month = month(Event.Clearance.Date)) %>%
+             filter(crime.month == 7) %>%
+             count(Event.Clearance.Group)
 
-
+  july_pie_graph <- plot_ly(july_df,
+                            labels = ~Event.Clearance.Group,
+                            values = ~n,
+                            type = 'pie',
+                            showlegend = FALSE
+                            ) %>%
+                    layout(title = "911 Calls Topics during July, 2012",
+                           xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+                           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE)
+                           )
+  return(july_pie_graph)
+}
