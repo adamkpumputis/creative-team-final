@@ -40,12 +40,13 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                                 # Input to select variable to map
 
                                 checkboxGroupInput('crimechoices', 
-                                            label = 'Variable to Map', 
+                                            label = 'Choose what crimes to see on the map!', 
                                             choices = crimes
                                 )
                               ),
                               # Main panel: display plotly map
                               mainPanel(
+                                p("Click on the pins to zoom in and to view more information!"),
                                 leafletOutput('map')
                               )
                             )
@@ -68,13 +69,14 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                               # Creates a main panel. Contains a variety of graphs on the dataset
                               mainPanel(
                                 h3("Observations"),
-                                
+                            
                                 p("If you're pressed for time, here are a couple high level 
                                   observations about the dataset we're looking at!"),
                                 
                                 # High level overview in text here.
-                                p("There was a total of 255,833 911 calls for 2012. If we graph these 
-                                  incidents by the type of crimes..."),
+                                h4("Types of Crime"), 
+                                p("We utilized a subset of 90,547 911 calls for 2012. We've graph these 
+                                  incidents by the type of crimes below."),
                                 # Going to graph 911 calls by offence/topic for 2012 seperated by crime.
                                 
                                 plotlyOutput("yearlyCrimeMap", width = "80%", height = "300px"),
@@ -84,7 +86,7 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                                 
                                 p("One thing that may not surprise you is that a majority of crime is centralized
                                   downtown. You can observe this on the map. For all categories, downtown has a higher
-                                  number of incidents than its surrounding areas for the year 2012."),
+                                  number of incidents than its surrounding areas for the year 2012 with a few exceptions."),
                                 
                                 p("Interesting outliers of note"),
                                 
@@ -95,6 +97,7 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                                 ),
                                 
                                 plotlyOutput("monthlyNumberGraph", width = "80%", height = "300px")
+                                
                               )
                             )
                    )
