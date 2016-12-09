@@ -6,7 +6,7 @@ library(dplyr)
 library(lubridate)
 
 df <- read.csv('project_data/filtered.csv')
-source('scripts/createYearlyGraph.R')
+source('scripts/graphScripts.R')
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {

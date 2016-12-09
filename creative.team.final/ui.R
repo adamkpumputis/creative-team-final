@@ -76,7 +76,7 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                                 # High level overview in text here.
                                 h4("Types of Crime"), 
                                 p("We utilized a subset of 90,547 911 calls for 2012. We've graph these 
-                                  incidents by the type of crimes below."),
+                                  incidents by the type of crimes by alphabetical order below."),
                                 # Going to graph 911 calls by offence/topic for 2012 seperated by crime.
                                 
                                 # Output of plot number 1
@@ -112,7 +112,25 @@ shinyUI(navbarPage('SPD 911 Incident Response Data',
                                   such as the 4th of July, may be the cause of this uptick in 911 calls. Non-violent crimes
                                   such as robbery and theft are reported than assault and other violent crimes"),
                                 
-                                h4("Future Research")
+                                h4("Future Research"),
+                                
+                                p("This data set holds a lot of information and we can use this to answer
+                                  some questions in both research and for general use."),
+                                
+                                strong("For research, some questions that can be asked are..."),
+                                
+                                tags$ul(
+                                  tags$li("Are lower amounts of 911 calls correlated to the crime being reported? (i.e. Prostitution,Sexual Assualt)" ),
+                                  tags$li("With this data, do certain courses of action reduce the number of 911 calls in certain areas?"),
+                                  tags$li("How do certain tools (911 beacons, emergency phones) affect the number of 911 calls in certain regions?")
+                                ),
+                                
+                                strong("For general use, some questions that can be asked are..."),
+                                
+                                tags$ul(
+                                  tags$li("What neighborhoods are safe? Which neighborhood has more of a certain crime?"),
+                                  tags$li("What areas do people need to be aware of when they travel?")
+                                )
                               )
                             )
                    )
