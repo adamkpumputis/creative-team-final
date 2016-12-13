@@ -1,4 +1,4 @@
-
+# Function to create a histogram representing the number of calls for each crime group.
 makeYearGraph <- function(df) {
   yearly_crime_df <- select(df, Event.Clearance.Group) %>%
                      count(Event.Clearance.Group)
@@ -16,6 +16,7 @@ makeYearGraph <- function(df) {
   return(yearGraph)
 }
 
+# Function to create a bar graph showing the total number of calls in each month.
 makeTimeGraph <- function(df) {
   time_df <- mutate(df, crime.month = month(Event.Clearance.Date)) %>%
              count(crime.month)
@@ -38,6 +39,8 @@ makeTimeGraph <- function(df) {
                     )
   return(time.graph)
 }
+
+# Function to create a pie chart to visualize the distribution of the calls.
 make_july_graph <- function(df) {
   july_df <- mutate(df, crime.month = month(Event.Clearance.Date)) %>%
              filter(crime.month == 7) %>%
