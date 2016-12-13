@@ -1,11 +1,7 @@
-setwd('C:/Users/Justin/Documents/info201/creative-team-final')
-
 library(shiny)
 library(leaflet)
 library(dplyr)
 library(plotly)
-
-df <- read.csv('./project_data/filtered.csv')
 
 # A list of crimes to include in the checkbox widget
 crimes <- list("Assaults" = 'ASSAULTS', 
